@@ -60,7 +60,7 @@ cd $ROOT/EfficientDet0-Hardhat-Detection
 !pip install -r requirements.txt
 !unzip models.zip
 !rm models.zip
-``
+```
 * Download fine_tuned_model folder from [here]().
 
 * Inference with this command:
