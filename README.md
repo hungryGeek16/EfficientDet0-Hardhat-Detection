@@ -65,7 +65,11 @@ cd $ROOT/EfficientDet0-Hardhat-Detection
 
 * Inference with this command:
 ```bash
-python --input_image=/path/to/image --input_image=/path/to/model
+python inference.py /path/to/image /path/to/model_folder
+```
+* Inference video:
+```bash
+python infer_vid.py /path/to/image /path/to/model_folder
 ```
 
 # 4. Task which are complete for now:
