@@ -10,12 +10,31 @@ import glob
 import cv2
 import sys
 
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
 import tensorflow as tf
 from models.research.object_detection.utils import config_util
 from models.research.object_detection.builders import model_builder
 import pathlib
 import random
+from scipy.spatial import distance
 import time
+
+color = {'Red':(255,0,0), 'Blue':(0,0,255), 'Green':(0,255,0),'Yellow':(255,255,0)}
+
+#Color detector
+def colors(image):
+    means = {}
+    img=image.reshape((image.shape[1]*image.shape[0],3)) #flatten images
+    kmeans=KMeans(n_clusters=3) #Call kmeans
+    kmeans.fit(img) #Centroid formation process
+    centroid=kmeans.cluster_centers_ #Get centroids
+    centroid_new=centroid.mean(axis=0) #Calculate mean
+    for i in color.keys(): # Compare with colors present in pixel space
+        dst = distance.euclidean(centroid_new, color[i])
+        means[i] = dst
+    return color[min(means, key=means.get)] #Select pixel with minimum distance to centroid
 
 
 def load_image_into_numpy_array(path):
@@ -99,8 +118,12 @@ for i in range(len(dets[0])):
     if scores[i] > 0.2:
        y1, x1, y2, x2 = dets[0][i,:]
        left, right, top, bottom = x1 * im_width, x2 * im_width, y1 * im_height, y2 * im_height
-       cv2.rectangle(image_np, (int(left),int(top)), (int(right),int(bottom)), (36,255,12), 2)
-       cv2.putText(image_np, str(labels[int(classes[i])])+":"+str(int(scores[i]*100)), (int(left), int(top-10)), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (36,255,12), 2)
-
+       if classes[i] == 0.0:
+           k = colors(image_np[int(top):int(bottom),int(left):int(right),:])
+           cv2.rectangle(image_np, (int(left),int(top)), (int(right),int(bottom)), k, 2) #Call color detector if helmet is present in detection
+           cv2.putText(image_np, str(labels[int(classes[i])])+":"+str(int(scores[i]*100)), (int(left), int(top-10)), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (36,255,12), 2)
+       else:
+           cv2.rectangle(image_np, (int(left),int(top)), (int(right),int(bottom)), (36,255,12), 2)
+           cv2.putText(image_np, str(labels[int(classes[i])])+":"+str(int(scores[i]*100)), (int(left), int(top-10)), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (36,255,12), 2)
 im = Image.fromarray(image_np)
-im.save("image1.png")
+im.save("image1.png") ##Saves image in directory
