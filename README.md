@@ -97,4 +97,6 @@ python infer_vid.py /path/to/image /path/to/model_folder
 
 - [ ] Save detections in xml format.
 
+## 5. Pending:
+
 - [ ] Detecting color of hard hat
