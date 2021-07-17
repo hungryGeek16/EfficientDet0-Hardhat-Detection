@@ -10,3 +10,5 @@ matplotlib
 pandas
 opencv-python 
 gdown
+pillow
+scipy
