@@ -119,3 +119,15 @@ python inference.py /path/to/image /path/to/model_folder
 ```bash
 python infer_vid.py /path/to/image /path/to/model_folder
 ```
+
+### Detections:
+
+* Detection 1:
+<p align="center">
+  <img src="detections/hard_hat_workers412.png" width = 700>
+</p>
+
+* Detection 2:
+<p align="center">
+  <img src="detections/hard_hat_workers438.png" width = 700>
+</p>
