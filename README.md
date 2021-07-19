@@ -93,7 +93,7 @@
 
 * When we see the pie chart above, the algorithm detects 3 dominant colors in the image. So instead of choosing one color from the detection, the colors are averaged and euclidean distance is calculated with RED,BLUE,GREEN and YELLOW colors.
 
-* Pink has is slightly nearer to red pixel, hence it's values are considered at the end for the above image.
+* Pink is slightly nearer to red pixel, hence it's values are considered at the end for the above image.
 
 ## 4. Training and Inferenece:
 
