@@ -15,7 +15,7 @@
 ### a. EfficientNet:
 
 * Backbone architectures are very important for an object detection module, whose job is to make features more significant for detection. 
-* There are various approches by which these backbones attain efficiency in producing features. Out which is incresing width(feature channels), depth(adding more layers) and resolution, is common practice.
+* There are various approches by which these backbones attain efficiency in producing features. Out of which is increasing width(feature channels), depth(adding more layers) and resolution, is common practice.
 
 <p align="center">
   <img src="pics/2.png" width = 1000>
@@ -109,7 +109,7 @@ cd $ROOT/EfficientDet0-Hardhat-Detection
 !unzip models.zip
 !rm models.zip
 ```
-* Download fine_tuned_model folder from [here]().
+* Download fine_tuned_model folder from [here](https://drive.google.com/file/d/1hyicS8mib85cKR2ap8P8V7O6GKShofmR/view?usp=sharing).
 
 * Inference with this command:
 ```bash
